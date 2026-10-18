@@ -1,11 +1,14 @@
 ---
-title: "Learning-R"
+format: 
+  html:
+    page-layout: article
+    toc: false
+    sidebar: false
+    anchor-sections: false
+
+title: "Learning R"
+# about:
+#   template: marquee
+  # id: about-block
+  # image-width: "100%"
 ---
-
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 1
-```

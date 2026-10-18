@@ -1,21 +1,43 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "Learning-R"
+  title: "Learning R"
+  description: "Website for learning R"
+  
+  # start of the navigation bar at the top of the website
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    # your sub-pages
+    right:
+      - text: "Home"
+        href: index.qmd
 
+  
+# Don't touch unless you know what you are doing :) ------------
+  search: 
+    location: navbar
+    type: overlay
+  page-footer: 
+    center: |
+      
+      © <span id="year"></span> · Aarzoo Grover
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+  
+
+ 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
+    fontsize: 1.0em
+      
+      # - style2-dark.scss
     toc: true
+    toc-depth: 4
+    toc-title: ""
+    footnotes-hover: true
+    highlight-style: tango
 
-editor: visual
+
 
