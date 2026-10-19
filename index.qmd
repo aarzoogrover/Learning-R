@@ -106,7 +106,8 @@ In console, type the following
 
 ```{r}
 #| eval: true  
-gapminder <- read.csv("https://github.com/swcarpentry/r-novice-gapminder/blob/main/episodes/data/gapminder_data.csv", row.names = NULL)  
+
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv")
 
 ```
 :::  
@@ -171,7 +172,7 @@ length(gapminder)
 
 Evaluating the number of rows and columns in our data 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false
 
@@ -183,7 +184,7 @@ ncol(gapminder)
 
 Alternatively you could use dim() function to display both no. of rows and columns  
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false
 
@@ -195,7 +196,7 @@ dim(gapminder)
 You could then explore the columns in your data using the colnames() function to know the variables in your data  
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false  
 
@@ -207,7 +208,7 @@ colnames(gapminder)
 ### what do the individual vectors looks like?  
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false
 
@@ -229,11 +230,11 @@ There are various packages available in R that can be downloaded from various re
 ### Installing the ggplot package 
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false
 
-install.packages('ggplot2')  
+install.packages("ggplot2", repos = "https://cloud.r-project.org")
 
 ```  
 
@@ -248,7 +249,7 @@ ggplot2 is built from the following set of components:
 Here, we are asking ggplot function to plot gapminder data using the columns Life expectancy and GDP per capita  
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false
 
@@ -262,7 +263,7 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + geom_point
 We can plot linear relationship between the Life expectancy and GDP per capita  
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 #| warnings: false
 
