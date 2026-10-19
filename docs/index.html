@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Learning R</title>
+<title>Getting started in R – Learning R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -44,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-12757e4b7af482b2d9c5bd8860d2b707.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b9175343ad5e98620a9451677a49a547.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-eedf2fdcba42d7d0a8cb925d521a08d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -106,14 +141,46 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a>
+  <ul>
+  <li><a href="#syntax-in-r" id="toc-syntax-in-r" class="nav-link" data-scroll-target="#syntax-in-r">Syntax in R</a></li>
+  <li><a href="#console-vs.-script" id="toc-console-vs.-script" class="nav-link" data-scroll-target="#console-vs.-script">Console vs.&nbsp;script</a>
+  <ul class="collapse">
+  <li><a href="#console" id="toc-console" class="nav-link" data-scroll-target="#console">Console</a></li>
+  <li><a href="#script" id="toc-script" class="nav-link" data-scroll-target="#script">Script</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#setup-guide" id="toc-setup-guide" class="nav-link" data-scroll-target="#setup-guide">Setup guide:</a>
+  <ul>
+  <li><a href="#r-studio" id="toc-r-studio" class="nav-link" data-scroll-target="#r-studio">R studio</a></li>
+  <li><a href="#using-r" id="toc-using-r" class="nav-link" data-scroll-target="#using-r">Using R</a></li>
+  </ul></li>
+  <li><a href="#working-on-the-dataset" id="toc-working-on-the-dataset" class="nav-link" data-scroll-target="#working-on-the-dataset">Working on the dataset</a>
+  <ul>
+  <li><a href="#types-of-data-in-r" id="toc-types-of-data-in-r" class="nav-link" data-scroll-target="#types-of-data-in-r">Types of data in R</a>
+  <ul class="collapse">
+  <li><a href="#types-of-vectors" id="toc-types-of-vectors" class="nav-link" data-scroll-target="#types-of-vectors">Types of Vectors</a></li>
+  </ul></li>
+  <li><a href="#evaluating-the-number-of-rows-and-columns-in-our-data" id="toc-evaluating-the-number-of-rows-and-columns-in-our-data" class="nav-link" data-scroll-target="#evaluating-the-number-of-rows-and-columns-in-our-data">evaluating the number of rows and columns in our data</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Learning R</h1>
+<h1 class="title">Getting started in R</h1>
 </div>
 
 
@@ -130,8 +197,271 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>R is a programming language as well as a software that runs R codes for carrying out statistical computing and graphics.</p>
+<p>Why is it widely used by researchers?</p>
+<ul>
+<li>It is great for reproducibility as you can share your code<br>
+</li>
+<li>It has a lot of packages to analyze different kinds of data sets<br>
+</li>
+<li>It produces publication quality graphics<br>
+</li>
+<li>It is free and open source with regular community feedback</li>
+</ul>
+<p>Since it is widely used by the research community, you get real time feedback from an experienced user in a reasonable time.</p>
+<section id="syntax-in-r" class="level2">
+<h2 data-anchor-id="syntax-in-r">Syntax in R</h2>
+<p>Like every programming language, we know how to talk with R via the script editor or the console. Here are the main components of R syntax:</p>
+<ul>
+<li>the comments (#) and how they are used to document content<br>
+</li>
+<li>variables and functions<br>
+</li>
+<li>the assignment operator &lt;-<br>
+</li>
+<li>the = for arguments in functions</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>title</th>
+<th>info</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>function name</td>
+<td>more info</td>
+</tr>
+<tr class="even">
+<td>function name 2</td>
+<td>more info</td>
+</tr>
+</tbody>
+</table>
+<p>The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write these instructions in the form of code, which is a common language that is understood by the computer and humans (after some practice). We call these instructions commands, and we tell the computer to follow the instructions by running (also called executing) the commands.</p>
+</section>
+<section id="console-vs.-script" class="level2">
+<h2 data-anchor-id="console-vs.-script">Console vs.&nbsp;script</h2>
+<p>You can run commands directly in the R console, or you can write them into an R script. It may help to think of working in the console vs.&nbsp;working in a script as something like cooking. The console is like making up a new recipe, but not writing anything down. You can carry out a series of steps and produce a nice, tasty dish at the end. However, because you didn’t write anything down, it’s harder to figure out exactly what you did, and in what order.</p>
+<p>Writing a script is like taking nice notes while cooking- you can tweak and edit the recipe all you want, you can come back in 6 months and try it again, and you don’t have to try to remember what went well and what didn’t. It’s actually even easier than cooking, since you can hit one button and the computer “cooks” the whole recipe for you!</p>
+<p>An additional benefit of scripts is that you can leave comments for yourself or others to read. Lines that start with # are considered comments and will not be interpreted as R code.</p>
+<section id="console" class="level3">
+<h3 data-anchor-id="console">Console</h3>
+<ul>
+<li>The R console is where code is run/executed<br>
+</li>
+<li>The prompt, which is the &gt; symbol, is where you can type commands<br>
+</li>
+<li>By pressing Enter, R will execute those commands and print the result.<br>
+</li>
+<li>You can work here, and your history is saved in the History pane, but you can’t access it in the future.</li>
+</ul>
+</section>
+<section id="script" class="level3">
+<h3 data-anchor-id="script">Script</h3>
+<ul>
+<li>A script is a record of commands to send to R, preserved in a plain text file with a .R extension</li>
+<li>You can make a new R script by clicking File → New File → R Script, clicking the green + button in the top left corner of RStudio, or pressing Shift+Cmd+N (Mac) or Shift+Ctrl+N (Windows). It will be unsaved, and called “Untitled1”<br>
+</li>
+<li>If you type out lines of R code in a script, you can send them to the R console to be evaluated
+<ul>
+<li>Cmd+Enter (Mac) or Ctrl+Enter (Windows) will run the line of code that your cursor is on</li>
+<li>If you highlight multiple lines of code, you can run all of them by pressing Cmd+Enter (Mac) or Ctrl+Enter (Windows)</li>
+<li>By preserving commands in a script, you can edit and rerun them quickly, save them for later, and share them with others</li>
+<li>You can leave comments for yourself by starting a line with a #</li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="setup-guide" class="level1">
+<h1>Setup guide:</h1>
+<section id="r-studio" class="level2">
+<h2 data-anchor-id="r-studio">R studio</h2>
+<p>What would you need?</p>
+<ul>
+<li>Stable internet connection<br>
+</li>
+<li>Disk space ~5GB<br>
+</li>
+<li>R and RStudio</li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Start by downloading latest version of R using this link: R version 4.6.1 (Happy Hop) needs takes &gt;1min</p>
+<p>Then download <a href="https://docs.posit.co/ide/user/#rstudio-ide-oss-downloads?ref=rstudio-legacy">RStudio</a> using this link and choose the appropriate open-source version for Windows/Mac/Linux needs &gt;1min</p>
+</div>
+</div>
+</div>
+</section>
+<section id="using-r" class="level2">
+<h2 data-anchor-id="using-r">Using R</h2>
+<p>RStudio is an integrated development environment (IDE) designed to improve productivity in data anaylsis.</p>
+<p>When you start RStudio, you’ll see four key regions or “panes” in the interface:</p>
+<ul>
+<li>the Source pane – where you can edit and save R or Python scripts or author computational documents like Quarto and R Markdown.</li>
+<li>the Console pane – to write short interactive R commands</li>
+<li>the Environment pane – displays temporary R objects as created during that R session.</li>
+<li>the Output Pane – displays the plots, tables, or HTML outputs of executed code along with files saved to disk</li>
+</ul>
+<p><img src="images/Picture1.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="working-on-the-dataset" class="level1">
+<h1>Working on the dataset</h1>
+<p>We begin with downloading the dataset we will be working with:</p>
+<p>In console, type the following</p>
+<p>::: {callout-note appearance=“simple” collapse=false} ## downloading the file<br>
+1. Download the data: <a href="./Data/gapminder_data.csv">gapminder_data.csv</a></p>
+<ol start="2" type="1">
+<li>Select the file using filer.choose() gapminder&lt;-read.cvs(““)</li>
+</ol>
+<p>:::</p>
+<p>The first thing we should always do is check out what the data looks like.</p>
+<section id="types-of-data-in-r" class="level2">
+<h2 data-anchor-id="types-of-data-in-r">Types of data in R</h2>
+<p>It’s important to understand how R thinks about, represents, and stores data.</p>
+<ul>
+<li>Data frame
+<ul>
+<li>Data.frames are made up of vectors. A vector is a 1-dimensional series of values, each column in a data.frame is a vector. Vectors are the basic building blocks of all data in R. Basically, in R, a bunch of vectors are stitched together in some way, or a function so understanding how vectors work is crucial to understanding how R treats data.</li>
+</ul></li>
+<li>Meta data
+<ul>
+<li>Metadata is a file in which we identify information about the data which is also stored in a CSV file format. In this file, each row corresponds to a sample and each column contains some information about each sample.</li>
+</ul></li>
+</ul>
+<p>One of the great things about R is how it handles missing data, undefined or infinite data represented as NA, NaN or Inf, without quotes, in vectors of any type.</p>
+<section id="types-of-vectors" class="level3">
+<h3 data-anchor-id="types-of-vectors">Types of Vectors</h3>
+<p>There are 4 main types of vectors (also known as atomic vectors):</p>
+<ul>
+<li>“character” for strings of characters. Each entry in a character vector is wrapped in quotes. In other programming languages, this type of data may be referred to as “strings”.<br>
+</li>
+<li>“integer” for integers. You may sometimes see integers represented like 2L or 20L. The L indicates to R that it is an integer, instead of “numeric”.<br>
+</li>
+<li>“numeric”, aka “double”, vectors can contain numbers including decimals. Other languages may refer to these as “float” or “floating point” numbers.<br>
+</li>
+<li>“logical” for TRUE and FALSE, which can also be represented as T and F. In other programming languages, these may be referred to as “Boolean” data. Vectors can only be of a single type. Mixing up vector types is one of the most common mistakes in R, and it can be tricky to figure out. Thus, it’s often very useful to check the types of vectors.</li>
+</ul>
+<p>Vectors can further be manipulated into lots of other shapes and forms.</p>
+<ul>
+<li>Matrices and arrays
+<ul>
+<li>n-dimensional numeric representations</li>
+<li>many-dimensional numeric</li>
+</ul></li>
+<li>lists
+<ul>
+<li>lists are very flexible ways to store vectors<br>
+</li>
+<li>list can contain vectors of many different types and lengths<br>
+</li>
+<li>an entry in a list can be another list, so lists can get deeply nested<br>
+</li>
+<li>a data.frame is a type of list where each column is an individual vector and each vector has to be the same length, since a data.frame has an entry in every column for each row</li>
+</ul></li>
+<li>factors
+<ul>
+<li>a way to represent categorical data</li>
+<li>they can be ordered or unordered</li>
+<li>they often look like character vectors, but behave differently</li>
+<li>under the hood, they are integers with character labels, called levels, for each integer<br>
+</li>
+<li>they come in handy when you are plotting categorical data and want to control the ordering of categories in the plot</li>
+</ul></li>
+</ul>
+<p>In essence, data frame is a list of vectors bearing different kinds of values.</p>
+<p>We could use str() function to examine the structure of the data. str() will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables. We could also look at the data using summary() function. For data frames, summary yields a numeric, tabular, or descriptive summary of each column. Numeric or integer columns are described by the descriptive statistics (quartiles and mean), and character columns by its length, class, and mode.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>checking what data looks like
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>str(gapminder)<br>
+summary(gapminder)<br>
+typeof(gapminder)<br>
+length(gapminder)</p>
+</div>
+</div>
+</section>
+</section>
+<section id="evaluating-the-number-of-rows-and-columns-in-our-data" class="level2">
+<h2 data-anchor-id="evaluating-the-number-of-rows-and-columns-in-our-data">evaluating the number of rows and columns in our data</h2>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(gapminder)  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(gapminder) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>alternatively you could use dim() function to display both no. of rows and columns
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>dim(gapminder)</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>You could then explore the columns in your data using the colnames() function to know the variables in your data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>colnames(gapminder)</p>
+<p>Output should show: “country” “year” “pop” “continent” “lifeExp” “gdpPercap”</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>checking what the variables looks like
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>typeof(gapminder$year)</p>
+<p>Output: “integer”</p>
+</div>
+</div>
+<p>Similarly, you could check it for other columns as well.</p>
+<p>You could also use head() and tail() function to see first few rows and last few rows respectively.</p>
+<p>Once we know enough about the data, we can move on to analyzing and visualizing the data. When analyzing data, we often work with selected data to answer a particular scientific question, so we are only working with selected columns or rows.</p>
+<p>There are various packages available in R that can be downloaded from various repositories. They include a collections of R functions, data, and compiled code in a well-defined format, created to add specific functionality. They can either be base packages or user contributed packages. Standard (or base) packages are considered part of the R source code and automatically available as part of your R installation. These contain the basic functions that allow R to work and enable standard statistical and graphical functions on datasets. The directories in R where the packages are stored are called the libraries. ggplot is one such base package that we would be downloading from CRAN repository here to plot our data.</p>
+<p>ggplot2 is built from the following set of components:</p>
+<ul>
+<li>Data sets are the data that you, the user, provide.<br>
+</li>
+<li>Mapping aesthetics are what connect the data to the graphics where you choose the graph looks using various available options.<br>
+</li>
+<li>Layers are the actual graphical output from ggplot2.</li>
+</ul>
+<p>Here, we are asking ggplot function to plot gapminder data using the columns Life expectancy and GDP per capita</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
