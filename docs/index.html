@@ -162,11 +162,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#working-on-the-dataset" id="toc-working-on-the-dataset" class="nav-link" data-scroll-target="#working-on-the-dataset">Working on the dataset</a>
   <ul>
+  <li><a href="#downloading-the-file" id="toc-downloading-the-file" class="nav-link" data-scroll-target="#downloading-the-file">Downloading the file</a></li>
   <li><a href="#types-of-data-in-r" id="toc-types-of-data-in-r" class="nav-link" data-scroll-target="#types-of-data-in-r">Types of data in R</a>
   <ul class="collapse">
-  <li><a href="#types-of-vectors" id="toc-types-of-vectors" class="nav-link" data-scroll-target="#types-of-vectors">Types of Vectors</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  <li><a href="#manipulation-of-vectors" id="toc-manipulation-of-vectors" class="nav-link" data-scroll-target="#manipulation-of-vectors">Manipulation of vectors</a></li>
+  <li><a href="#back-to-gapminder-dataset---what-does-the-data-looks-like" id="toc-back-to-gapminder-dataset---what-does-the-data-looks-like" class="nav-link" data-scroll-target="#back-to-gapminder-dataset---what-does-the-data-looks-like">Back to gapminder dataset - what does the data looks like?</a></li>
+  <li><a href="#what-do-the-individual-vectors-looks-like" id="toc-what-do-the-individual-vectors-looks-like" class="nav-link" data-scroll-target="#what-do-the-individual-vectors-looks-like">what do the individual vectors looks like?</a></li>
   </ul></li>
-  <li><a href="#evaluating-the-number-of-rows-and-columns-in-our-data" id="toc-evaluating-the-number-of-rows-and-columns-in-our-data" class="nav-link" data-scroll-target="#evaluating-the-number-of-rows-and-columns-in-our-data">evaluating the number of rows and columns in our data</a></li>
+  </ul></li>
+  <li><a href="#plotting-the-data" id="toc-plotting-the-data" class="nav-link" data-scroll-target="#plotting-the-data">Plotting the data</a>
+  <ul>
+  <li><a href="#installing-the-ggplot-package" id="toc-installing-the-ggplot-package" class="nav-link" data-scroll-target="#installing-the-ggplot-package">Installing the ggplot package</a></li>
+  <li><a href="#plotting-a-portion-of-data-life-expectancy-vs-gdp-per-capita" id="toc-plotting-a-portion-of-data-life-expectancy-vs-gdp-per-capita" class="nav-link" data-scroll-target="#plotting-a-portion-of-data-life-expectancy-vs-gdp-per-capita">Plotting a portion of data – Life expectancy vs GDP per capita</a></li>
+  <li><a href="#modifying-the-figure" id="toc-modifying-the-figure" class="nav-link" data-scroll-target="#modifying-the-figure">Modifying the figure</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -176,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -223,24 +232,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>the = for arguments in functions</li>
 </ul>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>title</th>
-<th>info</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>function name</td>
-<td>more info</td>
-</tr>
-<tr class="even">
-<td>function name 2</td>
-<td>more info</td>
-</tr>
-</tbody>
-</table>
 <p>The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write these instructions in the form of code, which is a common language that is understood by the computer and humans (after some practice). We call these instructions commands, and we tell the computer to follow the instructions by running (also called executing) the commands.</p>
 </section>
 <section id="console-vs.-script" class="level2">
@@ -306,25 +297,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>RStudio is an integrated development environment (IDE) designed to improve productivity in data anaylsis.</p>
 <p>When you start RStudio, you’ll see four key regions or “panes” in the interface:</p>
 <ul>
-<li>the Source pane – where you can edit and save R or Python scripts or author computational documents like Quarto and R Markdown.</li>
-<li>the Console pane – to write short interactive R commands</li>
-<li>the Environment pane – displays temporary R objects as created during that R session.</li>
-<li>the Output Pane – displays the plots, tables, or HTML outputs of executed code along with files saved to disk</li>
+<li><strong>Source pane</strong> – where you can edit and save R or Python scripts or author computational documents like Quarto and R Markdown.</li>
+<li><strong>Console pane</strong> – to write short interactive R commands</li>
+<li><strong>Environment pane</strong> – displays temporary R objects as created during that R session.</li>
+<li><strong>Output Pane</strong> – displays the plots, tables, or HTML outputs of executed code along with files saved to disk</li>
 </ul>
 <p><img src="images/Picture1.png" class="img-fluid"></p>
 </section>
 </section>
-<section id="working-on-the-dataset" class="level1">
+<section id="working-on-the-dataset" class="level1 page-columns page-full">
 <h1>Working on the dataset</h1>
 <p>We begin with downloading the dataset we will be working with:</p>
 <p>In console, type the following</p>
-<p>::: {callout-note appearance=“simple” collapse=false} ## downloading the file<br>
-1. Download the data: <a href="./Data/gapminder_data.csv">gapminder_data.csv</a></p>
-<ol start="2" type="1">
-<li>Select the file using filer.choose() gapminder&lt;-read.cvs(““)</li>
+<section id="downloading-the-file" class="level2 page-columns page-full">
+<h2 data-anchor-id="downloading-the-file">Downloading the file</h2>
+<ol type="1">
+<li><p>Download the data: <a href="./Data/gapminder_data.csv">gapminder_data.csv</a></p></li>
+<li><p>Alternatively you can use this command to get it going directly</p></li>
 </ol>
-<p>:::</p>
+<div class="column-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://github.com/swcarpentry/r-novice-gapminder/blob/main/episodes/data/gapminder_data.csv"</span>, <span class="at">row.names =</span> <span class="cn">NULL</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 <p>The first thing we should always do is check out what the data looks like.</p>
+</section>
 <section id="types-of-data-in-r" class="level2">
 <h2 data-anchor-id="types-of-data-in-r">Types of data in R</h2>
 <p>It’s important to understand how R thinks about, represents, and stores data.</p>
@@ -339,8 +336,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>One of the great things about R is how it handles missing data, undefined or infinite data represented as NA, NaN or Inf, without quotes, in vectors of any type.</p>
-<section id="types-of-vectors" class="level3">
-<h3 data-anchor-id="types-of-vectors">Types of Vectors</h3>
+<section id="vectors" class="level3">
+<h3 data-anchor-id="vectors">Vectors</h3>
 <p>There are 4 main types of vectors (also known as atomic vectors):</p>
 <ul>
 <li>“character” for strings of characters. Each entry in a character vector is wrapped in quotes. In other programming languages, this type of data may be referred to as “strings”.<br>
@@ -351,7 +348,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>“logical” for TRUE and FALSE, which can also be represented as T and F. In other programming languages, these may be referred to as “Boolean” data. Vectors can only be of a single type. Mixing up vector types is one of the most common mistakes in R, and it can be tricky to figure out. Thus, it’s often very useful to check the types of vectors.</li>
 </ul>
-<p>Vectors can further be manipulated into lots of other shapes and forms.</p>
+</section>
+<section id="manipulation-of-vectors" class="level3">
+<h3 data-anchor-id="manipulation-of-vectors">Manipulation of vectors</h3>
 <ul>
 <li>Matrices and arrays
 <ul>
@@ -375,80 +374,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>they often look like character vectors, but behave differently</li>
 <li>under the hood, they are integers with character labels, called levels, for each integer<br>
 </li>
-<li>they come in handy when you are plotting categorical data and want to control the ordering of categories in the plot</li>
+<li>they come in handy when you are plotting categorical data and want to control the ordering of categories in the plot .</li>
 </ul></li>
 </ul>
-<p>In essence, data frame is a list of vectors bearing different kinds of values.</p>
 <p>We could use str() function to examine the structure of the data. str() will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables. We could also look at the data using summary() function. For data frames, summary yields a numeric, tabular, or descriptive summary of each column. Numeric or integer columns are described by the descriptive statistics (quartiles and mean), and character columns by its length, class, and mode.</p>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>checking what data looks like
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>str(gapminder)<br>
-summary(gapminder)<br>
-typeof(gapminder)<br>
-length(gapminder)</p>
-</div>
-</div>
 </section>
-</section>
-<section id="evaluating-the-number-of-rows-and-columns-in-our-data" class="level2">
-<h2 data-anchor-id="evaluating-the-number-of-rows-and-columns-in-our-data">evaluating the number of rows and columns in our data</h2>
+<section id="back-to-gapminder-dataset---what-does-the-data-looks-like" class="level3">
+<h3 data-anchor-id="back-to-gapminder-dataset---what-does-the-data-looks-like">Back to gapminder dataset - what does the data looks like?</h3>
 <div class="cell" data-warnings="false">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(gapminder)  </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(gapminder) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(gapminder)  </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gapminder)  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(gapminder)  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(gapminder)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Evaluating the number of rows and columns in our data</p>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(gapminder)  </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(gapminder) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>alternatively you could use dim() function to display both no. of rows and columns
+<p>Alternatively you could use dim() function to display both no. of rows and columns</p>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gapminder)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>You could then explore the columns in your data using the colnames() function to know the variables in your data</p>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(gapminder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>dim(gapminder)</p>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>You could then explore the columns in your data using the colnames() function to know the variables in your data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>colnames(gapminder)</p>
-<p>Output should show: “country” “year” “pop” “continent” “lifeExp” “gdpPercap”</p>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>checking what the variables looks like
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>typeof(gapminder$year)</p>
-<p>Output: “integer”</p>
-</div>
+</section>
+<section id="what-do-the-individual-vectors-looks-like" class="level3">
+<h3 data-anchor-id="what-do-the-individual-vectors-looks-like">what do the individual vectors looks like?</h3>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(gapminder<span class="sc">$</span>year)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Similarly, you could check it for other columns as well.</p>
 <p>You could also use head() and tail() function to see first few rows and last few rows respectively.</p>
 <p>Once we know enough about the data, we can move on to analyzing and visualizing the data. When analyzing data, we often work with selected data to answer a particular scientific question, so we are only working with selected columns or rows.</p>
+</section>
+</section>
+</section>
+<section id="plotting-the-data" class="level1">
+<h1>Plotting the data</h1>
 <p>There are various packages available in R that can be downloaded from various repositories. They include a collections of R functions, data, and compiled code in a well-defined format, created to add specific functionality. They can either be base packages or user contributed packages. Standard (or base) packages are considered part of the R source code and automatically available as part of your R installation. These contain the basic functions that allow R to work and enable standard statistical and graphical functions on datasets. The directories in R where the packages are stored are called the libraries. ggplot is one such base package that we would be downloading from CRAN repository here to plot our data.</p>
+<section id="installing-the-ggplot-package" class="level3">
+<h3 data-anchor-id="installing-the-ggplot-package">Installing the ggplot package</h3>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ggplot2'</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>ggplot2 is built from the following set of components:</p>
 <ul>
 <li>Data sets are the data that you, the user, provide.<br>
@@ -457,7 +428,32 @@ length(gapminder)</p>
 </li>
 <li>Layers are the actual graphical output from ggplot2.</li>
 </ul>
+</section>
+<section id="plotting-a-portion-of-data-life-expectancy-vs-gdp-per-capita" class="level3">
+<h3 data-anchor-id="plotting-a-portion-of-data-life-expectancy-vs-gdp-per-capita">Plotting a portion of data – Life expectancy vs GDP per capita</h3>
 <p>Here, we are asking ggplot function to plot gapminder data using the columns Life expectancy and GDP per capita</p>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="modifying-the-figure" class="level3">
+<h3 data-anchor-id="modifying-the-figure">Modifying the figure</h3>
+<p>We can plot linear relationship between the Life expectancy and GDP per capita</p>
+<div class="cell" data-warnings="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">scale_x_log10</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Now you could try creating a similar plot for year vs GDP per capita</p>
+</div>
+</div>
+</div>
 
 
 </section>

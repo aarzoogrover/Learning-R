@@ -13,6 +13,8 @@ title: "Getting started in R"
 #   template: marquee
   # id: about-block
   # image-width: "100%"
+editor_options: 
+  chunk_output_type: console
 ---
 # Background  
 
@@ -35,12 +37,6 @@ Like every programming language, we know how to talk with R via the script edito
 - variables and functions  
 - the assignment operator <-  
 - the = for arguments in functions  
-
-| title | info |
-| --- | --- |
-| function name | more info |
-| function name 2 | more info | 
-
 
 The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write these instructions in the form of code, which is a common language that is understood by the computer and humans (after some practice). We call these instructions commands, and we tell the computer to follow the instructions by running (also called executing) the commands.  
 
@@ -87,10 +83,10 @@ RStudio is an integrated development environment (IDE) designed to improve produ
 
 When you start RStudio, you’ll see four key regions or “panes” in the interface:  
 
--	the Source pane – where you can edit and save R or Python scripts or author computational documents like Quarto and R Markdown.
--	the Console pane – to write short interactive R commands
--	the Environment pane – displays temporary R objects as created during that R session.
--	the Output Pane – displays the plots, tables, or HTML outputs of executed code along with files saved to disk  
+-	**Source pane** – where you can edit and save R or Python scripts or author computational documents like Quarto and R Markdown.
+-	**Console pane** – to write short interactive R commands
+-	**Environment pane** – displays temporary R objects as created during that R session.
+-	**Output Pane** – displays the plots, tables, or HTML outputs of executed code along with files saved to disk  
 
 ![ ](images/Picture1.png)    
 
@@ -98,16 +94,23 @@ When you start RStudio, you’ll see four key regions or “panes” in the inte
 
 We begin with downloading the dataset we will be working with:  
 
-In console, type the following
+In console, type the following  
 
-::: {callout-note appearance="simple" collapse=false}
-## downloading the file  
+## Downloading the file  
+
 1. Download the data: [gapminder_data.csv](/Data/gapminder_data.csv)  
 
-2. Select the file using filer.choose()
-gapminder<-read.cvs("")
+2. Alternatively you can use this command to get it going directly   
 
-:::
+::: {.column-body}
+
+```{r}
+#| eval: true  
+gapminder <- read.csv("https://github.com/swcarpentry/r-novice-gapminder/blob/main/episodes/data/gapminder_data.csv", row.names = NULL)  
+
+```
+:::  
+
 
 The first thing we should always do is check out what the data looks like.
 
@@ -123,7 +126,7 @@ It’s important to understand how R thinks about, represents, and stores data.
 
 One of the great things about R is how it handles missing data, undefined or infinite data represented as NA, NaN or Inf, without quotes, in vectors of any type.  
 
-### Types of Vectors  
+### Vectors  
 
 There are 4 main types of vectors (also known as atomic vectors):  
 
@@ -133,7 +136,7 @@ There are 4 main types of vectors (also known as atomic vectors):
 -	"logical" for TRUE and FALSE, which can also be represented as T and F. In other programming languages, these may be referred to as “Boolean” data.
 Vectors can only be of a single type. Mixing up vector types is one of the most common mistakes in R, and it can be tricky to figure out. Thus, it’s often very useful to check the types of vectors.  
 
-Vectors can further be manipulated into lots of other shapes and forms.  
+### Manipulation of vectors 
 
 - Matrices and arrays  
   -	n-dimensional numeric representations
@@ -150,25 +153,23 @@ Vectors can further be manipulated into lots of other shapes and forms.
   - they can be ordered or unordered
   - they often look like character vectors, but behave differently
   - under the hood, they are integers with character labels, called levels, for each integer  
-  - they come in handy when you are plotting categorical data and want to control the ordering of categories in the plot  
+  - they come in handy when you are plotting categorical data and want to control the ordering of categories in the plot  . 
 
-In essence, data frame is a list of vectors bearing different kinds of values. 
+We could use str() function to examine the structure of the data. str() will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables. We could also look at the data using summary() function. For data frames, summary yields a numeric, tabular, or descriptive summary of each column. Numeric or integer columns are described by the descriptive statistics (quartiles and mean), and character columns by its length, class, and mode.  
 
-We could use str() function to examine the structure of the data. str() will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables. We could also look at the data using summary() function. For data frames, summary yields a numeric, tabular, or descriptive summary of each column. Numeric or integer columns are described by the descriptive statistics (quartiles and mean), and character columns by its length, class, and mode.
+### Back to gapminder dataset - what does the data looks like?  
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false  
 
-::: {.callout-note appearance="simple"}  
-
-## checking what data looks like  
 str(gapminder)  
 summary(gapminder)  
 typeof(gapminder)  
 length(gapminder)  
+```
 
-:::
-
- 
-
-## evaluating the number of rows and columns in our data 
+Evaluating the number of rows and columns in our data 
 ```{r}
 #| eval: false
 #| echo: true
@@ -180,30 +181,40 @@ ncol(gapminder)
 ```
 
 
+Alternatively you could use dim() function to display both no. of rows and columns  
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false
 
-::: {.callout-note appearance="simple"}  
 
-## alternatively you could use dim() function to display both no. of rows and columns  
-dim(gapminder)
-:::
 
-::: {.callout-note appearance="simple"}  
+dim(gapminder)  
+```  
 
-## You could then explore the columns in your data using the colnames() function to know the variables in your data  
+You could then explore the columns in your data using the colnames() function to know the variables in your data  
+
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false  
+
+
 colnames(gapminder)
 
-Output should show: "country"   "year"      "pop"       "continent" "lifeExp"   "gdpPercap"  
+```
 
-:::    
+### what do the individual vectors looks like?  
 
-::: {.callout-note appearance="simple"}  
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false
 
-## checking what the variables looks like ##
-typeof(gapminder$year)
 
-Output: “integer”
+typeof(gapminder$year)  
 
-:::
+```
   
 Similarly, you could check it for other columns as well.
 
@@ -211,12 +222,57 @@ You could also use head() and tail() function to see first few rows and last few
 
 Once we know enough about the data, we can move on to analyzing and visualizing the data. When analyzing data, we often work with selected data to answer a particular scientific question, so we are only working with selected columns or rows.  
 
+# Plotting the data  
+
 There are various packages available in R that can be downloaded from various repositories. They include a collections of R functions, data, and compiled code in a well-defined format, created to add specific functionality. They can either be base packages or user contributed packages. Standard (or base) packages are considered part of the R source code and automatically available as part of your R installation. These contain the basic functions that allow R to work and enable standard statistical and graphical functions on datasets. The directories in R where the packages are stored are called the libraries. ggplot is one such base package that we would be downloading from CRAN repository here to plot our data.  
+
+### Installing the ggplot package 
+
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false
+
+install.packages('ggplot2')  
+
+```  
 
 ggplot2 is built from the following set of components:  
 
 - Data sets are the data that you, the user, provide.  
 - Mapping aesthetics are what connect the data to the graphics where you choose the graph looks using various available options.  
 - Layers are the actual graphical output from ggplot2.  
-  
-Here, we are asking ggplot function to plot gapminder data using the columns Life expectancy and GDP per capita
+
+### Plotting a portion of data – Life expectancy vs GDP per capita  
+
+Here, we are asking ggplot function to plot gapminder data using the columns Life expectancy and GDP per capita  
+
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false
+
+library("ggplot2")
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + geom_point()
+
+```  
+
+### Modifying the figure 
+
+We can plot linear relationship between the Life expectancy and GDP per capita  
+
+```{r}
+#| eval: false
+#| echo: true
+#| warnings: false
+
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(alpha = 0.5) + scale_x_log10() + geom_smooth(method="lm")
+
+```  
+
+::: {.callout-note appearance="simple"}  
+
+Now you could try creating a similar plot for year vs GDP per capita  
+
+:::  
