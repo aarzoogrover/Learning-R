@@ -92,9 +92,7 @@ When you start RStudio, you’ll see four key regions or “panes” in the inte
 
 # Working on the dataset  
 
-We begin with downloading the dataset we will be working with:  
-
-In console, type the following  
+We begin with downloading the dataset we will be working with:
 
 ## Downloading the file  
 
